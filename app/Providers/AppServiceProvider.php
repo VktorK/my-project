@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\User\ProductController;
+use App\Models\Product;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+//        $count = (new ProductController());
+//        $count->getCartCount();
+//        view()->share('count', $count);
     }
 }

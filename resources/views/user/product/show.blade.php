@@ -3,6 +3,7 @@
 @section('title', 'Информация о товаре')
 
 @section('content')
+    <x-app-layout>
     <div class="container mt-5">
         <h1 class="text-center">{{ $product['title'] }}</h1>
         <p><strong>Цена:</strong> {{ $product['price'] }} руб</p>
@@ -13,4 +14,5 @@
             <a href="{{ route('user.product.index') }}" class="btn btn-secondary">Назад к списку товаров</a>
         </div>
     </div>
+    </x-app-layout>
 @endsection

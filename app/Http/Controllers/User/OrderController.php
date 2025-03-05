@@ -38,6 +38,7 @@ class OrderController extends Controller
 
     public function store(UserOrderStoreRequest $request): Factory|View|Application
     {
+        dd(111111111);
         $data = $request->validated();
         $order = OrderService::store($data)->resolve();
         $resourceOrder = UserOrderStoreResource::make($order)->resolve();
@@ -60,9 +61,9 @@ class OrderController extends Controller
         return redirect()->route('user.product.index',compact('resourceOrder'))->with('success', 'Продукт успешно обновлён');
     }
 
-    public function destroy(Order $product): RedirectResponse
+    public function destroy(Order $order): RedirectResponse
     {
-        OrderService::destroy($product);
+        OrderService::destroy($order);
         return redirect()->route('user.order.index');
     }
 }

@@ -24,6 +24,7 @@ class ProductController extends Controller
         $products = ProductService::index();
         $count = $this->getCartCount();
         $productResource = ProductIndexResource::collection($products)->resolve();
+
         view()->share('count', $count);
 
         return view('user/product/index', compact('productResource'));
@@ -72,7 +73,7 @@ class ProductController extends Controller
             return redirect()->route('user.product.index');
     }
 
-    protected function getCartCount(): int
+    public function getCartCount(): int
     {
         $userId = auth()->id();
         $user = User::with('productsCount')->find($userId);
@@ -83,4 +84,5 @@ class ProductController extends Controller
         });
         return  $productsWithQuantity->sum('qty');
     }
+
 }
