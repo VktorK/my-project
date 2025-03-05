@@ -33,4 +33,5 @@ class Product extends Model
     {
        return $qty * $price;
     }
+
 }

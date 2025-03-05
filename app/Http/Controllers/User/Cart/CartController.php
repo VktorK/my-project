@@ -17,9 +17,8 @@ class CartController extends Controller
         $products = User::find($userId)
             ->productsUserToCart()
             ->get();
-
         $userCartResource = UserCartResource::collection($products)->resolve();
-//        dd($userCartResource);
+
         return view('user/cart/index',compact('userCartResource'));
     }
 
@@ -31,10 +30,22 @@ class CartController extends Controller
             auth()->user()->productsToCart()->updateExistingPivot($product->id, [
                 'qty' => $data['qty'],
             ]);
+            return redirect()->back()->with('success', 'Количество обновлено');
+
         } else {
             auth()->user()->productsToCart()->attach($product->id, ['qty' => $data['qty']]);
-        }
+            return redirect()->back()->with('success', 'Товар добавлен в корзину!');
 
-        return redirect()->back()->with('success', 'Товар добавлен в корзину!');
+        }
+    }
+
+    public function removeFromCart($product_id)
+    {
+        $user = auth()->user();
+        $user->productsUserToCart()
+            ->where('product_id', $product_id)
+            ->delete();
+
+        return redirect()->route('user.cart.index')->with('success', 'Товар удален из корзины');
     }
 }

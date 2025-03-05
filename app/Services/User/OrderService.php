@@ -24,6 +24,7 @@ class OrderService
 
     public static function destroy(Order $order): ?bool
     {
+        $order->products()->detach();
         return $order->delete();
     }
 
