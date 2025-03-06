@@ -3,6 +3,8 @@
 namespace App\Services\User;
 
 use App\Models\Order;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class OrderService
 {
@@ -11,9 +13,22 @@ class OrderService
         return Order::all();
     }
 
-    public static function store(array $data): ?Order
+    public static function store(array $data)
     {
-        return Order::create($data);
+        try {
+            Db::beginTransaction();
+            $order = Order::create($data);
+            User::find(auth()->id())
+                ->productsToCart()
+                ->updateExistingPivot(auth()->user()
+                    ->productsToCart->pluck('id'), [
+                    'order_id' => $order->id
+                ]);
+            Db::commit();
+        } catch (\Exception $e) {
+            Db::rollBack();
+        }
+        return $order;
     }
 
     public static function update(Order $order, array $data): ?Order

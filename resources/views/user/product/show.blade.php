@@ -1,8 +1,5 @@
-@extends('layout.app')
-
 @section('title', 'Информация о товаре')
 
-@section('content')
     <x-app-layout>
     <div class="container mt-5">
         <h1 class="text-center">{{ $product['title'] }}</h1>
@@ -15,4 +12,3 @@
         </div>
     </div>
     </x-app-layout>
-@endsection

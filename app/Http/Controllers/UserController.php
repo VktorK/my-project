@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\User\UserStoreRequest;
 use App\Models\User;
-use Illuminate\Auth\Events\Logout;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use JetBrains\PhpStorm\NoReturn;
 
 class UserController extends Controller
 {
@@ -27,8 +24,7 @@ class UserController extends Controller
         try {
             $data = $request->validationData();
 
-            $user = User::create($data);
-
+            User::create($data);
 
             return redirect()->route('welcome')->with('success', 'Вы успешно зарегистрированы и вошли в систему!');
         } catch (\Exception $e) {

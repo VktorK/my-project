@@ -48,9 +48,12 @@ Route::middleware('auth')->group(function () {
     Route::put('/orders/cart/{product}',[CartController::class,'storeToCart'])->name('user.products.card.edit');
     Route::get('/orders/cart/index', [CartController::class,'index'])->name('user.cart.index');
     Route::delete('/cart/remove/{productUserId}', [CartController::class, 'removeFromCart'])->name('user.product.cart.delete');
+    Route::post('/orders/store', [OrderController::class, 'store'])->name('user.order.store');
+
 
     Route::get('/cart/count', [OrderController::class, 'getCartCount'])->name('cart.count');
     Route::get('/orders', [OrderController::class, 'index'])->name('user.order.index');
+    Route::get('/orders/{order}', [OrderController::class,'show'])->name('user.order.show');
     Route::delete('/orders/{order}', [OrderController::class,'destroy'])->name('user.order.destroy');
     Route::get('/orders/{order}/edit', [OrderController::class,'edit'])->name('user.order.edit');
     Route::put('/orders/{order}', [OrderController::class,'update'])->name('user.order.update');
@@ -67,7 +70,6 @@ Route::get('/users/register',[UserController::class,'create'])->name('user.regis
 //Route::get('/users/login',[UserController::class,'login'])->name('user.login');
 Route::post('/users/login',[UserController::class,'store'])->name('user.store');
 Route::post('/logout',[UserController::class,'logout'])->name('user.logout');
-Route::post('/orders/store', [OrderController::class, 'store'])->name('user.order.store');
 
 
 

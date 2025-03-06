@@ -1,8 +1,7 @@
-@extends('layout.app')
+
 
 @section('title', 'Products')
 
-@section('content')
     <x-app-layout>
     <div class="d-flex justify-content-center align-items-center vh-100">
         <div class="w-75">
@@ -45,4 +44,3 @@
         </div>
     </div>
         </x-app-layout>
-@endsection

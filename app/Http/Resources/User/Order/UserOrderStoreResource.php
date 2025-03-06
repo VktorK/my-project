@@ -14,6 +14,12 @@ class UserOrderStoreResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+           'id' => $this->id,
+           'order_status' => $this->order_status ?? 'новый',
+           'comment' => $this->comment,
+           'total' => $this->total,
+            'fio' => $this->user->fullname
+        ];
     }
 }

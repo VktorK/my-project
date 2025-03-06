@@ -1,8 +1,5 @@
-@extends('layout.app')
-
 @section('title', 'Products')
 
-@section('content')
     <x-app-layout>
     <div class="d-flex justify-content-center align-items-center vh-100">
         <div class="w-75">
@@ -43,6 +40,7 @@
                             <td class="text-center">
                                 <form action="{{ route('orders.cart.store', $product['id']) }}" method="POST" onsubmit="return confirm('Вы уверены, что хотите добавить товар в корзину?');" style="display: inline;">
                                     @csrf
+                                    <input type="hidden" name="product_id" value="{{ $product['id'] }}">
                                     <button type="button" class="btn btn-success btn-sm" style="cursor: pointer;" onclick="showInput(this)">
                                         <i class="fas fa-shopping-cart"></i>
                                     </button>
@@ -64,4 +62,3 @@
         </div>
     </div>
     </x-app-layout>
-@endsection

@@ -2,19 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
@@ -62,7 +61,9 @@ class User extends Authenticatable
 
     public function productsToCart(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class)->wherePivot('order_id', '=',null);
+        return $this->belongsToMany(Product::class)
+            ->wherePivot('user_id','=',auth()->id())
+            ->wherePivot('order_id', '=',null);
     }
 
     public function productsUserToCart(): BelongsToMany
@@ -76,7 +77,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Product::class)->withPivot('qty');
     }
 
-    public function getFullNameAttribute()
+    public function getFullNameAttribute(): string
     {
         return "{$this->first_name} {$this->last_name}";
     }

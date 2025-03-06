@@ -20,7 +20,6 @@ return new class extends Migration
             $table->foreignId('product_id');
             $table->foreignId('order_id')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

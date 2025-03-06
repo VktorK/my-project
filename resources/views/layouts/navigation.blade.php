@@ -18,7 +18,7 @@
                     <x-responsive-nav-link :href="route('user.order.index')" :active="request()->routeIs('orders.*')">
                         {{ __('Orders') }}
                     </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="route('user.category.index')" :active="request()->routeIs('categories.*')">
+                    <x-responsive-nav-link :href="route('user.categories.index')" :active="request()->routeIs('categories.*')">
                         {{ __('Categories') }}
                     </x-responsive-nav-link>
                     <div class="cart-icon">

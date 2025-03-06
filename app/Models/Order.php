@@ -13,6 +13,8 @@ class Order extends Model
 
     protected $guarded = false;
 
+    protected $table = 'orders';
+
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class,'product_user','order_id','product_id');
@@ -22,4 +24,5 @@ class Order extends Model
     {
         return $this->belongsTo(User::class);
     }
+
 }

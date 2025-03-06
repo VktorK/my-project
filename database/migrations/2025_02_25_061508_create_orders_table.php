@@ -20,7 +20,6 @@ return new class extends Migration
             $table->float('total')->nullable();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
-            $table->softDeletes();
 
         });
     }

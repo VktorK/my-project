@@ -22,10 +22,7 @@ class ProductController extends Controller
     public function index(): Factory|View|Application
     {
         $products = ProductService::index();
-        $count = $this->getCartCount();
         $productResource = ProductIndexResource::collection($products)->resolve();
-
-        view()->share('count', $count);
 
         return view('user/product/index', compact('productResource'));
     }
@@ -38,8 +35,7 @@ class ProductController extends Controller
 
     public function create(): Factory|View|Application
     {
-        $categories = Category::all();
-        return view('user/product/create',compact('categories'));
+        return view('user/product/create');
     }
 
     public function store(UserProductStoreRequest $request): Factory|View|Application
@@ -54,8 +50,7 @@ class ProductController extends Controller
     public function edit($id): Factory|View|Application
     {
         $product = Product::findOrFail($id);
-        $categories = Category::all();
-        return view('user/product/edit', compact('product', 'categories'));
+        return view('user/product/edit', compact('product'));
 
     }
 
@@ -72,17 +67,4 @@ class ProductController extends Controller
             ProductService::destroy($product);
             return redirect()->route('user.product.index');
     }
-
-    public function getCartCount(): int
-    {
-        $userId = auth()->id();
-        $user = User::with('productsCount')->find($userId);
-        $productsWithQuantity = $user->productsCount->map(function ($productsCount) {
-            return [
-                'qty' => $productsCount->pivot->qty
-            ];
-        });
-        return  $productsWithQuantity->sum('qty');
-    }
-
 }

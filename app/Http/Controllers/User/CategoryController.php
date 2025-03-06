@@ -13,8 +13,8 @@ class CategoryController extends Controller
 {
     public function index(): Factory|View|Application
     {
-        $products = CategoryService::index();
-        $categoryResource = CategoryIndexResource::collection($products)->resolve();
+        $categories = CategoryService::index();
+        $categoryResource = CategoryIndexResource::collection($categories)->resolve();
         return view('user/category/index', compact('categoryResource'));
     }
 }
