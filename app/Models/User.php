@@ -74,7 +74,7 @@ class User extends Authenticatable
 
     public function productsCount()
     {
-        return $this->belongsToMany(Product::class)->withPivot('qty');
+        return $this->belongsToMany(Product::class)->withPivot('qty')->where('order_id',null);
     }
 
     public function getFullNameAttribute(): string

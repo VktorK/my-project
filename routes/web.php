@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders/cart/index', [CartController::class,'index'])->name('user.cart.index');
     Route::delete('/cart/remove/{productUserId}', [CartController::class, 'removeFromCart'])->name('user.product.cart.delete');
     Route::post('/orders/store', [OrderController::class, 'store'])->name('user.order.store');
+    Route::put('/orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
 
 
     Route::get('/cart/count', [OrderController::class, 'getCartCount'])->name('cart.count');

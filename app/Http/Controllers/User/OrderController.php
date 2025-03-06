@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\Order\UpdateStatusRequest;
 use App\Http\Requests\User\Order\UserOrderStoreRequest;
 use App\Http\Resources\User\Order\OrderIndexResource;
 use App\Http\Resources\User\Order\UserOrderStoreResource;
@@ -41,5 +42,16 @@ class OrderController extends Controller
     {
         OrderService::destroy($order);
         return redirect()->route('user.order.index');
+    }
+
+    public function updateStatus(UpdateStatusRequest $request, Order $order)
+    {
+        dd($request);
+        $data = $request->validationData();
+        dd($data);
+        $order->update($data);
+        $order->fresh();
+        return redirect()->route('user.order.index');
+//        return OrderStatusResource::make($order)->resolve();
     }
 }

@@ -35,6 +35,13 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" style="cursor: pointer;"><i class="fas fa-trash"></i> Удалить</button>
                                 </form>
+                                <div class="mr-5">
+                                <form action="{{ route('orders.updateStatus', $order['id']) }}" method="POST" onsubmit="return confirm('Заказ был Вам доставлен');" style="display: inline;">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-success btn-sm" style="cursor: pointer;"><i class="fas fa-trash"></i>Доставлено</button>
+                                </form>
+                                </div>
                             </td>
                         </tr>
                         @endforeach
