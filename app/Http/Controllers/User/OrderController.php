@@ -13,6 +13,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use JetBrains\PhpStorm\NoReturn;
 
 class OrderController extends Controller
 {
@@ -44,11 +45,9 @@ class OrderController extends Controller
         return redirect()->route('user.order.index');
     }
 
-    public function updateStatus(UpdateStatusRequest $request, Order $order)
+    #[NoReturn] public function updateStatus(UpdateStatusRequest $request, Order $order)
     {
-        dd($request);
         $data = $request->validationData();
-        dd($data);
         $order->update($data);
         $order->fresh();
         return redirect()->route('user.order.index');
