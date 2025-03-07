@@ -787,9 +787,6 @@ select {
   white-space: nowrap;
   border-width: 0;
 }
-.collapse {
-  visibility: collapse;
-}
 .fixed {
   position: fixed;
 }
@@ -854,8 +851,14 @@ select {
 .ml-4 {
   margin-left: 1rem;
 }
+.ml-5 {
+  margin-left: 1.25rem;
+}
 .mr-2 {
   margin-right: 0.5rem;
+}
+.mr-5 {
+  margin-right: 1.25rem;
 }
 .mt-1 {
   margin-top: 0.25rem;

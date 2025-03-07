@@ -19,4 +19,5 @@ class UpdateStatusRequest extends FormRequest
             'order_status' => 'required|string|in:' . Order::ORDER_SUCCSESS,
         ];
     }
+
 }

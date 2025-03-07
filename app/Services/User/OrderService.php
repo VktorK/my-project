@@ -4,6 +4,7 @@ namespace App\Services\User;
 
 use App\Models\Order;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 
 class OrderService
@@ -43,4 +44,10 @@ class OrderService
         return $order->delete();
     }
 
+    public static function updateStatus(array $data,Order $order): RedirectResponse
+    {
+        $order->update($data);
+        $order->fresh();
+        return redirect()->route('user.order.index')->with('success', 'Статус заказа успешно обновлен.');
+    }
 }

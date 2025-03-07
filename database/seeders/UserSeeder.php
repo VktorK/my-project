@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $roleAdmin = Role::admin()->pluck('id')->first();
         $admin = ['first_name'=>'Dmitrii', 'last_name' => 'Kyrochkin','email'=>'admin@gmail.com','password'=>bcrypt('123456')];

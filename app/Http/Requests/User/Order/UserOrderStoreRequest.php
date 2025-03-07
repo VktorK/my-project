@@ -29,6 +29,7 @@ class UserOrderStoreRequest extends FormRequest
         return [
             'comment.required' => 'Поле "Комментарий" обязательно для заполнения.',
             'comment.string' => 'Поле "Комментарий" должно быть строкой.',
+
             'total.required' => 'Поле "Итоговая сумма" обязательно для заполнения.',
             'total.numeric' => 'Поле "Итоговая сумма" должно быть числом.',
         ];
