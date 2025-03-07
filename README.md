@@ -21,11 +21,12 @@ Clone the repository
 
 Switch to the repo folder
 
-    cd TaskManager
+    cd my-project
 
 Install all the dependencies using composer
 
     composer install
+    npm install
 
 Update all the dependencies using composer
 
@@ -39,36 +40,32 @@ Generate a new application key
 
     php artisan key:generate
 
-Generate a new JWT authentication secret key
-
-    php artisan jwt:secret
-
 Run the database migrations (**Set the database connection in .env before migrating**)
 
-    php artisan migrate
-
-Generate L5-Swagger service
-
-    php artisan l5-swagger:generate
+    php artisan migrate --seed
 
 Start the local development server
 
     php artisan serve
+    npm run dev
+    npm run build
+    vite
 
 You can now access the server at http://localhost:8000
 
-You can now access the swagger at http://localhost:8000/api/swagger
 
 **TL;DR command list**
 
-    git clone https://github.com/VktorK/TaskManager.git
-    cd TaskManager
+    git clone https://github.com/VktorK/my-project.git
+    cd my-project
     composer install
-    composer update
+    npm install
+    npm run dev
+    npm run build
     cp .env.example .env
     php artisan key:generate
-    php artisan jwt:generate
-    php artisan l5-swagger:generate
+    vite
+    
     
 **Make sure you set the correct database connection information before running the migrations** [Environment variables](#environment-variables)
 
@@ -91,20 +88,13 @@ Or run the database seeder and enjou
 
     php artisan migrate:refresh
 
-# Code overview
-
-## Dependencies
-
-- [jwt-auth](https://github.com/tymondesigns/jwt-auth) - For authentication using JSON Web Tokens
-- [laravel-l5-swagger](https://github.com/DarkaOnLine/L5-Swagger) - For handling L5-Swagger recource handing (L5-Swagger)
-
-## Folders
+# Folders
 
 - `app` - Contains all the Eloquent models
-- `app/Http/Controllers/Admin|User` - Contains all the admin|user|common controllers
-- `app/Http/Middleware` - Contains the JWT auth middleware, isAdmin middleware
-- `app/Http/Requests/Admin|User group` - Contains all the admin|user group form requests
-- `app/Http/Resource/Admin|User group` - Contains all the admin|user group resource layer
+- `app/Http/Controllers/User` - Contains all the user|common controllers
+- `app/Http/Middleware` - Contains the JWT auth middleware
+- `app/Http/Requests/User group` - Contains all the admin|user group form requests
+- `app/Http/Resource/User group` - Contains all the admin|user group resource layer
 - `app/Http/Filters` - Contains the query filters used for filtering admin|user requests
 - `app/Services` - Contains сontroller methods to improve business logic and security
 - `config` - Contains all the application configuration files
@@ -121,30 +111,6 @@ Or run the database seeder and enjou
 ***Note*** : You can quickly set the database information and other variables in this file and have the application fully working.
 
 ----------
-
-# Testing API
-
-Run the laravel development server
-
-    php artisan serve
-
-The api can now be accessed at
-
-    http://localhost:8000/api/swagger
- 
-# Authentication
- 
-This applications uses JSON Web Token (JWT) to handle authentication. The token is passed with each request using the `Authorization` header with `Token` scheme. The JWT authentication middleware handles the validation and authentication of the token. Please check the following sources to learn more about JWT.
- 
-- https://jwt.io/introduction/
-- https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html
-
-----------
-
-# L5 Swagger - OpenApi or Swagger Specification for Laravel project (L5-Swagger)
- 
-This package is a wrapper of Swagger-php and swagger-ui adapted to work with Laravel. The actual Swagger spec is beyond the scope of this package. All L5-Swagger does is package up swagger-php and swagger-ui in a Laravel-friendly fashion, and tries to make it easy to serve. The default configuration allows requests from `http://localhost:8000/api/swagger`
- 
 
 ## Contributing
 
