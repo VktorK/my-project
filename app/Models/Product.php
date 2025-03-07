@@ -51,6 +51,9 @@ class Product extends Model
     public static function getCartCount(): int
     {
         $userId = auth()->id();
+        if ($userId === null) {
+            return 0;
+        }
         $user = User::with('productsCount')->find($userId);
         return $user->productsCount->sum(function($product) {
             return $product->pivot->qty;

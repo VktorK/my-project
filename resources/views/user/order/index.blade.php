@@ -35,13 +35,16 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" style="cursor: pointer;"><i class="fas fa-trash"></i> Удалить</button>
                                 </form>
+                                @if($order['order_status'] != 'исполнен')
                                 <div class="mr-5">
                                 <form action="{{ route('orders.updateStatus', $order['id']) }}" method="POST" onsubmit="return confirm('Заказ был Вам доставлен');" style="display: inline;">
                                     @csrf
                                     @method('PUT')
+                                    <input type="hidden" name="order_status" value="{{ 'исполнен' }}">
                                     <button type="submit" class="btn btn-success btn-sm" style="cursor: pointer;"><i class="fas fa-trash"></i>Доставлено</button>
                                 </form>
                                 </div>
+                                    "@endif
                             </td>
                         </tr>
                         @endforeach

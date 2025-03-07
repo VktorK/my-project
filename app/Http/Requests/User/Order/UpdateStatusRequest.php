@@ -16,12 +16,7 @@ class UpdateStatusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'order_status' => 'required|string|in:' . implode(',', [
-                    Order::ORDER_PENDING,
-                    Order::ORDER_PROCESSING,
-                    Order::ORDER_SUCCESS,
-                    Order::ORDER_CANCELED,
-                ]),
+            'order_status' => 'required|string|in:' . Order::ORDER_SUCCSESS,
         ];
     }
 }

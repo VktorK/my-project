@@ -45,12 +45,13 @@ class OrderController extends Controller
         return redirect()->route('user.order.index');
     }
 
-    #[NoReturn] public function updateStatus(UpdateStatusRequest $request, Order $order)
+    public function updateStatus(UpdateStatusRequest $request, Order $order): RedirectResponse
     {
-        $data = $request->validationData();
+        $data = $request->validated();
         $order->update($data);
         $order->fresh();
-        return redirect()->route('user.order.index');
+        return redirect()->route('user.order.index')->with('success', 'Статус заказа успешно обновлен.');
+
 //        return OrderStatusResource::make($order)->resolve();
     }
 }

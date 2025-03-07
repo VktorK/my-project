@@ -15,11 +15,8 @@ class Order extends Model
 
     protected $table = 'orders';
 
-//    const ORDER_SUCCSESS = 'Доставлено';
-    const ORDER_PENDING = 'pending';
-    const ORDER_PROCESSING = 'processing';
-    const ORDER_SUCCESS = 'completed';
-    const ORDER_CANCELED = 'canceled';
+    const ORDER_SUCCSESS = 'исполнен';
+
 
     public function products(): BelongsToMany
     {
