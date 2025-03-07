@@ -10,7 +10,7 @@ class UserOrderStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'comment' => 'required|string',
+            'comment' => 'nullable|string',
             'total' => 'required|numeric'
         ];
     }

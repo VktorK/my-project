@@ -26,7 +26,7 @@
                         <tr>
                             <th scope="row" class="text-center">{{$order['id']}}</th>
                             <td class="text-center" style="cursor: pointer;">{{$order['order_status']}}</td>
-                            <td class="text-center" style="cursor: pointer;">{{$order['comment']}}</td>
+                            <td class="text-center" style="cursor: pointer;">{{$order['comment'] ?? 'Комментарий отсутствует'}}</td>
                             <td class="text-center" style="cursor: pointer;">{{$order['total']}} руб.</td>
                             <td class="text-center" style="cursor: pointer;">{{$order['flName']}}</td>
                             <td class="text-center actions">

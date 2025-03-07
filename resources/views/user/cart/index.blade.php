@@ -65,7 +65,7 @@
                     <input type="hidden" name="total" value="{{ $total_sum_products }}">
                     <button type="button" class="btn btn-success" onclick="showInputOrder(this)">Добавить комментарий</button>
                     <div class="input-group" style="display: none; margin-top: 5px; width: 816px;" id="input-group-order" >
-                        <textarea class="form-control" style="width: 816px; margin-bottom: 5px;" id="comment" name="comment" placeholder="Введите ваш комментарий" rows="3" required></textarea>
+                        <textarea class="form-control" style="width: 816px; margin-bottom: 5px;" id="comment" name="comment" placeholder="Введите ваш комментарий" rows="3"></textarea>
                         <button type="submit" class="btn btn-primary btn-sm rounded-button">Создать заказ</button>
                         <button type="button" class="btn btn-secondary btn-sm rounded-button" onclick="hideInputOrder(this)">Отмена</button>
                     </div>
